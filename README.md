@@ -1,57 +1,40 @@
-# Detection Engineering Program: 
+# ⚛️ Atomic Red Teaming — Detection Validation
 
-Detection engineering is the process of identifying and mitigating security threats by designing, implementing, and continually improving the SIEM and EDR solutions capabilities. This project is great for Purple Teaming assessments.
+Detection engineering is the practice of designing, implementing, and continually improving SIEM and EDR capabilities to catch real threats. This project focuses on **validating those detections** through controlled attack simulation — running **Atomic Red Team** tests mapped to **MITRE ATT&CK** against **Microsoft Sentinel** and **Microsoft Defender XDR** to prove coverage and find blind spots.
 
-You can use any security framework to identify security gaps, in this case I will use the MITRE ATT@CK framework to perform deeper analysis. But first thing, let's break things to smaller pieces, we must identify: 
+Before running any test, four questions scope the work:
+
 - What do I need to detect?
-- What critical assets are in our environment to protect? 
-- What threat actors, techniques, tools, can be relevant to us?
-- What are the current attack trends and known exploited vulnerabilities? 
+- What critical assets need protecting?
+- What techniques and tools are relevant to our environment?
+- Which ATT&CK TTPs do we already have coverage for — and which are blind spots?
 
-In this project, I will use Microsoft Sentinel and M365 Defender as my security solutions to implement Detection Engineering.
+---
 
-## [+] Scope
-1. This project aims to enhance the organization's detection and response capabilities through a comprehensive approach that includes MITRE ATT&CK framework and Threat Intelligence.
+## 🔭 Scope
 
-2. Two main components involve using MITRE ATT&CK and Threat Intelligence 
-   > I will perform attack simulations or commands directly from the Atomic Red Team, which is based on the MITRE ATT&CK TTP’s and attack trends, to test capabilities of our EDR/SIEM/SOAR.
- 
-   > I will integrate Threat Intelligence with detection expertise to keep up with the current attack trends, recent malware, and actively exploited vulnerability.
+Validate and strengthen detection coverage through hands-on adversary simulation:
 
-3. The goal of detection engineering is to design, develop, and implement effective security solutions that can detect and respond to potential threats in a timely and efficient manner. 
+- **Attack simulation** — execute Atomic Red Team tests and commands mapped to MITRE ATT&CK TTPs to exercise EDR / SIEM / SOAR against real attacker behavior.
+- **Detection validation** — confirm each simulated technique generates the expected telemetry, alert, and severity. Where it doesn't, that's a gap to close.
+- **Detection tuning** — build or refine the analytics rules and alert logic needed to cover the techniques that slipped through, then re-test to confirm the fix.
 
+The goal: prove that detections fire when they should, catch the ones that don't, and close the gap — technique by technique.
 
-## [+] Benefits
-1. ***Proactive Security:*** Focuses on identifying and closing gaps in an organization's security posture. 
- 
-   > By creating and testing detection mechanisms, security teams can better identify and respond to security incidents before they result in a major breach.
+---
 
-2. ***Evaluating Enterprise Endpoint and SIEM Detection:*** Ensure they are detecting and alerting on relevant security events. 
-   > This includes setting up alert policies that trigger notifications when certain events occur or attack goes undetected.
+## ✅ Benefits
 
-3. ***Effective Alert Policies:*** Helps to create more effective alert policies by identifying the most critical events that require immediate attention. 
-   > This helps to reduce alert fatigue and improve the efficiency of security teams in responding to security incidents.
- 
-4. ***Improve Skillsets:*** Helps the Detection Enginner or security team understand the flow of an attack. 
-   > Improves the overall skillsets by creating queries, alert policies, and overall response.
+- **Proactive security** — find and close detection gaps before an attacker finds them.
+- **Validated coverage** — confirm endpoint and SIEM detections actually alert on the techniques that matter, and surface what goes undetected.
+- **Better alert policies** — prioritize the events that need immediate attention, reducing alert fatigue and sharpening response.
+- **Stronger skillsets** — running simulations and writing the detections to catch them deepens the team's understanding of how attacks actually flow.
+- **Refined incident response** — measurable coverage means threats get caught earlier, before damage is done.
 
-5. ***Concised and Refined Incident Response:*** Helps the security team identify threats efficently and identify them before damage can be done. 
-   > Help the Security Team be more proactive.
-   
-## [+] Requirements 
-1. Sentinel or Defender for Endpoint (Or your EDR/SIEM of choice)
-2. Atomic Red Team (Or your Red Team simulation of choice)
-3. Threat Intelligence Feed
-4. Fundamental knowledge of Powershell and Bash
+---
 
-## [+] Procedures
-### I. Automating MITRE ATT&CK Using Atomic Red Team
+## 🧰 Requirements
 
-   > Please read: :link: [Integrating MITRE ATT&CK](https://github.com/nguyentimmy/Detection-Engineering/tree/main/1%20-%20Automating%20MITRE%20ATT%26CK%20Using%20Atomic%20Red%20Team) :exclamation:
-
-### II. Detect Current Attack Trends Using Threat Intelligence 
-
-   > Please read: :link: [Intergrating Threat Intelligence](https://github.com/nguyentimmy/Detection-Engineering/tree/main/2%20-%20Detect%20Current%20Attack%20Trends%20Using%20Threat%20Intelligence) :exclamation:
-
-### III. Continuous Improvement Development 
-   > In Progress - TBA  :exclamation:
+- Microsoft Sentinel and/or Defender for Endpoint (or your EDR/SIEM of choice)
+- Atomic Red Team (or your red-team simulation of choice)
+- Working knowledge of PowerShell and Bash
