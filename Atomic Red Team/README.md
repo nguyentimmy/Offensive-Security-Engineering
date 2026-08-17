@@ -4,10 +4,6 @@ This project validates our detection coverage by simulating known attacks and co
 
 The workflow is a validation loop: **simulate a technique → check whether it was detected → build or tune the detection if it wasn't → re-test to confirm.** Each Atomic test is a controlled, reversible way to answer one question — *would we catch this in production?*
 
-![MITRE ATT&CK Matrix](https://github.com/nguyentimmy/Detection-Engineering/blob/main/1%20-%20Automating%20MITRE%20ATT%26CK%20Using%20Atomic%20Red%20Team/Photos/MITRE.png)
-
-*MITRE ATT&CK® is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations, used as a foundation for threat models across industry, government, and the security community.*
-
 ---
 
 ## 🧰 Requirements
