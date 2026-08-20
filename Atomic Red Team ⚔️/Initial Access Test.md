@@ -63,7 +63,7 @@ net user guest /active:no
 net localgroup Administrators guest /delete
 net localgroup "Remote Desktop Users" guest /delete
 ```
-
+---
 ### 🔬 Test 2 — Activate Guest account
 
 The minimal version — a single command that flips the Guest account active. Good for validating whether even the low-noise version of this activity is detected.
@@ -71,7 +71,7 @@ The minimal version — a single command that flips the Guest account active. Go
 ```cmd
 net user guest /active:yes
 ```
-
+---
 **Cleanup:** `net user guest /active:no`
 
 ### 🔬 Test 3 — Enable Guest account (macOS)
