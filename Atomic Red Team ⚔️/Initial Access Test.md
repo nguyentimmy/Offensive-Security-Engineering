@@ -72,8 +72,9 @@ The minimal version — a single command that flips the Guest account active. Go
 ```cmd
 net user guest /active:yes
 ```
----
 **Cleanup:** `net user guest /active:no`
+
+---
 
 ### 🔬 Test 3 — Enable Guest account (macOS)
 
