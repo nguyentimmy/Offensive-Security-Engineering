@@ -41,6 +41,7 @@ We validate three tests under this technique:
 | 2 | Activate Guest Account | Windows | Activates the default (disabled) Guest account |
 | 3 | Enable Guest Account on macOS | macOS | Enables the Guest account via `sysadminctl` |
 
+---
 ### 🔬 Test 1 — Enable Guest with RDP & admin privileges
 
 The highest-signal of the three: it activates the Guest account, escalates it into the local Administrators and Remote Desktop Users groups, and turns on RDP — a full "backdoor account" setup in a handful of commands.
