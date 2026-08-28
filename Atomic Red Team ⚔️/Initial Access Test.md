@@ -1,28 +1,4 @@
-# ⚔️ Automating MITRE ATT&CK with Atomic Red Team
-
-This project validates our detection coverage by simulating known attacks and confirming our SIEM/EDR catches them. Any red-team simulation framework works, but we use **Atomic Red Team** for consistency — it maps every test cleanly to MITRE ATT&CK.
-
-The workflow is a validation loop: **simulate a technique → check whether it was detected → build or tune the detection if it wasn't → re-test to confirm.** Each Atomic test is a controlled, reversible way to answer one question — *would we catch this in production?*
-
----
-
-## 🧰 Requirements
-
-- [Atomic Red Team](https://github.com/redcanaryco/invoke-atomicredteam/wiki/Installing-Invoke-AtomicRedTeam#install-execution-framework-and-atomics-folder) *(see their wiki for install instructions)*
-- PowerShell & Bash *(Atomic Red Team requires working knowledge of both)*
-- Microsoft Sentinel and/or Defender for Endpoint
-
----
-
-## 🗺️ Approach
-
-We work through the ATT&CK matrix tactic by tactic. Starting with the first — [Initial Access](https://attack.mitre.org/tactics/TA0001/) — which covers the techniques adversaries use to gain their first foothold, such as spearphishing or exploiting public-facing services.
-
-> 🎯 **Project story: "Defend and Detect: Initial Access"**
-
----
-
-## 🧪 Validation Walkthrough — T1078.001: Default Accounts
+# 🧪 Validation Walkthrough — T1078.001: Default Accounts
 
 **Tactic:** Initial Access, Persistence, Privilege Escalation, Defense Evasion
 **Technique:** [T1078.001 — Valid Accounts: Default Accounts](https://attack.mitre.org/techniques/T1078/001)
