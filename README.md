@@ -43,7 +43,7 @@ The goal: prove that detections fire when they should, catch the ones that don't
 - Atomic Red Team (or your red-team simulation of choice)
 - Working knowledge of PowerShell and Bash
 
-➡️ See the [`Atomic Red Team`](./Atomic%20Red%20Team) folder.
+➡️ See the [`Atomic Red Team`]([./Atomic%20Red%20Team](https://github.com/nguyentimmy/Offensive-Security-Engineering/tree/16b937595b2b247e13cac0969b3698dba4144ca5/Atomic%20Red%20Team%20%E2%9A%94%EF%B8%8F)) folder.
 
 ---
 
