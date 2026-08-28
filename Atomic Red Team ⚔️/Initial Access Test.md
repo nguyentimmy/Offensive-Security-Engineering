@@ -1,11 +1,12 @@
 # 🧪 Validation Walkthrough — T1078.001: Default Accounts
 
-**Tactic:** Initial Access, Persistence, Privilege Escalation, Defense Evasion
-**Technique:** [T1078.001 — Valid Accounts: Default Accounts](https://attack.mitre.org/techniques/T1078/001)
 
 ### 📖 Why it matters
 
 Adversaries abuse built-in default accounts — the Windows `Guest` and `Administrator` accounts, AWS `root`, ESXi `root`, the default Kubernetes service account — to gain access without dropping any malware. Appliances and network devices shipped with default credentials are easy targets when those credentials are never changed. Because this activity uses legitimate accounts and native OS commands, it blends into normal administration, which is exactly what makes validating detection for it worthwhile.
+
+**Tactic:** Initial Access, Persistence, Privilege Escalation, Defense Evasion
+**Technique:** [T1078.001 — Valid Accounts: Default Accounts](https://attack.mitre.org/techniques/T1078/001)
 
 ### ⚔️ The Atomic Tests
 
