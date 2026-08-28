@@ -1,0 +1,87 @@
+# 🧪 Validation Walkthrough — T1053.005: Scheduled Task
+
+
+### 📖 Why it matters
+
+Task Scheduler is a native, signed, admin-legitimate Windows feature — which is exactly why attackers reach for it. A scheduled task can give an adversary **initial execution, persistence, privilege escalation, and lateral movement** all from one native binary, `schtasks.exe`. Tasks can run as `SYSTEM`, survive reboots, be created on remote hosts, or even hidden from `schtasks /query` and the Task Scheduler GUI ("Ghost Tasks"). Because Windows admins, SCCM, Intune, GPO, and countless legitimate tools also create scheduled tasks constantly, this technique blends into normal operations — making it a high-value target for detection validation.
+
+**Tactic:** Execution, Persistence, Privilege Escalation
+**Technique:** [T1053.005 — Scheduled Task/Job: Scheduled Task](https://attack.mitre.org/techniques/T1053/005)
+
+### ⚔️ The Atomic Tests
+
+We validate the first three tests under this technique:
+
+| # | Test | Platform | What it does |
+| --- | --- | --- | --- |
+| 1 | Scheduled Task Startup Script | Windows | Creates two tasks — one at user logon, one at system startup — that spawn `calc.exe` |
+| 2 | Scheduled Task Local | Windows | Creates a one-time task to spawn `cmd.exe` at a specified time |
+| 3 | Scheduled Task Remote | Windows | Creates a scheduled task on a remote system using supplied credentials |
+
+---
+### 🔬 Test 1 — Scheduled Task Startup Script
+
+The persistence classic: one task fires at every user logon, another at system startup running as `SYSTEM`. This is the single most common way malware hangs around after reboot. Even though it launches `calc.exe` for the demo, the pattern (`schtasks /create` + `onlogon`/`onstart` + `/ru system`) is what production detections should key on.
+
+**Attack commands** (elevated `command_prompt`):
+
+```cmd
+schtasks /create /tn "T1053_005_OnLogon" /sc onlogon /tr "cmd.exe /c calc.exe"
+schtasks /create /tn "T1053_005_OnStartup" /sc onstart /ru system /tr "cmd.exe /c calc.exe"
+```
+
+**Cleanup:**
+
+```cmd
+schtasks /delete /tn "T1053_005_OnLogon" /f >nul 2>&1
+schtasks /delete /tn "T1053_005_OnStartup" /f >nul 2>&1
+```
+---
+### 🔬 Test 2 — Scheduled Task Local
+
+The minimal one-shot version — a single `schtasks` command creating a `ONCE` task that spawns `cmd.exe` at a specific time. Good for validating whether even a lower-noise, single-task creation event is caught.
+
+**Attack commands** (`command_prompt`):
+
+```cmd
+SCHTASKS /Create /SC ONCE /TN spawn /TR C:\windows\system32\cmd.exe /ST 20:10
+```
+
+**Cleanup:**
+
+```cmd
+SCHTASKS /Delete /TN spawn /F >nul 2>&1
+```
+---
+
+### 🔬 Test 3 — Scheduled Task Remote
+
+The lateral-movement variant — `schtasks` with the `/S` flag targets a remote host and creates the task there using supplied credentials. This is the highest-signal of the three: legitimate use of remote `schtasks` outside management tooling is rare, and it maps to attacker patterns like PsExec-style pivot without dropping PsExec.
+
+**Attack commands** (elevated `command_prompt`):
+
+```cmd
+SCHTASKS /Create /S <target> /RU <DOMAIN\user> /RP <password> /TN "Atomic task" /TR "C:\windows\system32\cmd.exe" /SC daily /ST 20:10
+```
+
+**Cleanup:**
+
+```cmd
+SCHTASKS /Delete /S <target> /U <DOMAIN\user> /P <password> /TN "Atomic task" /F >nul 2>&1
+```
+
+---
+
+### ✅ What to validate after running
+
+Each test should generate telemetry your detections can key on. After execution, confirm:
+
+- **Did the SIEM/EDR alert?** Task creation should surface as **Windows Event ID 4698** (a scheduled task was created), plus `schtasks.exe` command-line events in `DeviceProcessEvents`. Companion events: **4700/4701** (task enabled/disabled), **4702** (task updated).
+- **Was the severity right?** A task running as `SYSTEM`, or a task pointing at `cmd.exe`/`powershell.exe` from an unusual path, should score higher than a routine user-scoped task. The remote variant (Test 3) is the highest severity — it's rare legitimately.
+- **If nothing fired** — that's the gap. Build or tune a detection for `schtasks /create` with high-risk indicators (`/ru system`, remote `/S` flag, script hosts as the action target, or user-writable payload paths), then re-run the test to confirm the fix.
+
+> 💡 A clean detection here keys on the *combination*: scheduled task creation **+** a suspicious action target (cmd/powershell/script) **+** a high-privilege run context or remote host. Any one alone is noise — SCCM, Intune, and GPO create thousands of legitimate tasks; the tell is what the task actually runs and where.
+
+---
+
+*Atomic test content last updated by Red Canary: 2024-10-04*
