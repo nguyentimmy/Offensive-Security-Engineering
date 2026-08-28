@@ -1,6 +1,6 @@
 # 🔓 RDP Brute Force Lab
 
-> 🗓️ *This lab was conducted in 2022 for testing and educational purposes in an isolated environment. It is uploaded here to present my work.*
+> 🗓️ *This lab was conducted in 2022 for testing and educational purposes in an isolated environment. It is uploaded here to present my work. Please note that this is a very nooby pentesting assessment intended just for practice. :)*
 
 ## 🎯 Purpose
 
