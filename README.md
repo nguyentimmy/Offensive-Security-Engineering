@@ -1,4 +1,10 @@
-# ⚛️ Atomic Red Teaming — Detection Validation
+# 🛡️ Offensive Security Engineering
+
+A hands-on repo where offensive techniques meet detection engineering. Attacks are run in controlled labs — then validated against **Microsoft Sentinel** and **Microsoft Defender XDR** to confirm they actually surface as alerts and incidents. The theme throughout: *don't just run the attack — prove you'd catch it.*
+
+---
+
+## ⚛️ Atomic Red Teaming — Detection Validation
 
 Detection engineering is the practice of designing, implementing, and continually improving SIEM and EDR capabilities to catch real threats. This project focuses on **validating those detections** through controlled attack simulation — running **Atomic Red Team** tests mapped to **MITRE ATT&CK** against **Microsoft Sentinel** and **Microsoft Defender XDR** to prove coverage and find blind spots.
 
@@ -9,9 +15,7 @@ Before running any test, four questions scope the work:
 - What techniques and tools are relevant to our environment?
 - Which ATT&CK TTPs do we already have coverage for — and which are blind spots?
 
----
-
-## 🔭 Scope
+### 🔭 Scope
 
 Validate and strengthen detection coverage through hands-on adversary simulation:
 
@@ -21,9 +25,7 @@ Validate and strengthen detection coverage through hands-on adversary simulation
 
 The goal: prove that detections fire when they should, catch the ones that don't, and close the gap — technique by technique.
 
----
-
-## ✅ Benefits
+### ✅ Benefits
 
 - **Proactive security** — find and close detection gaps before an attacker finds them.
 - **Validated coverage** — confirm endpoint and SIEM detections actually alert on the techniques that matter, and surface what goes undetected.
@@ -31,10 +33,26 @@ The goal: prove that detections fire when they should, catch the ones that don't
 - **Stronger skillsets** — running simulations and writing the detections to catch them deepens the team's understanding of how attacks actually flow.
 - **Refined incident response** — measurable coverage means threats get caught earlier, before damage is done.
 
----
-
-## 🧰 Requirements
+### 🧰 Requirements
 
 - Microsoft Sentinel and/or Defender for Endpoint (or your EDR/SIEM of choice)
 - Atomic Red Team (or your red-team simulation of choice)
 - Working knowledge of PowerShell and Bash
+
+➡️ See the [`Atomic Red Team`](./Atomic%20Red%20Team) folder.
+
+---
+
+## 💥 Penetration Testing *(beginner-level)*
+
+> 🗓️ *Archived work from 2022 — beginner-level pentesting labs. I was just starting out and admittedly pretty green (still am, honestly), but the goal was to get hands-on with common offensive tools, understand how they work, and validate whether my detections would pick them up. Uploaded as proof of work and to show the learning journey.*
+
+Back in 2022 I set up a small purple-team range to try out penetration testing. These are entry-level exercises — nothing advanced — but each one pairs a **red-team simulation** with the **blue-team detection** built to catch it, walking the full loop: attack → detect → analyze.
+
+➡️ See the [`Penetrating Testing`](./Penetrating%20Testing%20%F0%9F%92%A5) folder.
+
+---
+
+## ⚠️ Disclaimer
+
+All activity was performed in isolated lab environments I owned, for educational and detection-validation purposes only. Nothing here targets systems I did not control.
