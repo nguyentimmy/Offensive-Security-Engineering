@@ -4,7 +4,7 @@ A hands-on repo where offensive techniques meet detection engineering. Attacks a
 
 ---
 
-## ⚛️ Atomic Red Teaming — Detection Validation
+## ⚛️ Atomic Red Teaming — Detection & EDR Validation
 
 Detection engineering is the practice of designing, implementing, and continually improving SIEM and EDR capabilities to catch real threats. This project focuses on **validating those detections** through controlled attack simulation — running **Atomic Red Team** tests mapped to **MITRE ATT&CK** against **Microsoft Sentinel** and **Microsoft Defender XDR** to prove coverage and find blind spots.
 
