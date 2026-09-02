@@ -21,13 +21,13 @@ This lab demonstrates end-to-end detection of an RDP brute-force attack in an Az
 ## ⚔️ Phase 1 — Attack Simulation
 **Reconnaissance** — An Nmap scan confirms RDP is open on the Windows server. Exposed remote-access protocols like RDP and SSH are among the first things an attacker probes for, since they offer a direct path to interactive access. This particular scan is deliberately aggressive (`-T5 -vvv`) and would light up most modern defenses — IDS, IPS, SIEM, EDR, XDR — so it isn't how you'd operate quietly in the real world. It's run loud here on purpose, to clearly surface the open ports for demonstration.
 
-```
+```bash
 nmap -sC -sV -vvv -T5 -oN report.txt 10.0.0.4
 ```
 
 **Brute force** — With RDP confirmed open, Hydra runs a dictionary attack against the `winserver` account using the `rockyou.txt` wordlist. Each failed attempt writes an Event ID 4625 to the Windows security log — exactly the traffic the Sentinel rule is watching for.
 
-```
+```bash
 hydra -t 1 -V -l winserver -P rockyou.txt rdp://10.0.0.4
 ```
 ![Nmap scan showing RDP open on the target server](https://github.com/nguyentimmy/Offensive-Security-Engineering/blob/main/Penetrating%20Testing%20%F0%9F%92%A5/RDP%20Brute%20Force/Pictures/1.%20rdp%20bf.png)
