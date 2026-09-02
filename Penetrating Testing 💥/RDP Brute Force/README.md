@@ -40,7 +40,7 @@ hydra -t 1 -V -l winserver -P rockyou.txt rdp://10.0.0.4
 
 On the blue-team side, I built a Sentinel analytics rule that raises an incident when it sees multiple failed sign-ins tied to **Event ID 4625** — the event Windows records for every failed local logon attempt. A short burst of these against a single account is a strong brute-force signal.
 
-![Sentinel analytics rule detecting the brute-force attempt](https://github.com/nguyentimmy/azure-lab/blob/main/Purple%20Teaming%20Assessment/Network%20Pentest/01%20RDP%20Brute%20Force/Pictures/2.%20rdp%20bf.png)
+![Sentinel analytics rule detecting the brute-force attempt](https://github.com/nguyentimmy/Offensive-Security-Engineering/blob/4bb5570de0fc984d8acebffc0bff0666d78ce3cd/Penetrating%20Testing%20%F0%9F%92%A5/RDP%20Brute%20Force/Pictures/2.%20rdp%20bf.png)
 
 - The rule successfully picked up the brute-force attempt as it happened.
 - It's configured to **auto-assign** the incident to me, set the severity to **High**, and **map entities** (account, host, IP) so the incident is immediately actionable.
