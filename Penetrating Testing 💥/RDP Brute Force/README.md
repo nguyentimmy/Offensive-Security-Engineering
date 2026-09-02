@@ -20,7 +20,7 @@ This lab demonstrates end-to-end detection of an RDP brute-force attack in an Az
 
 ## ⚔️ Phase 1 — Attack Simulation
 
-![Nmap scan showing RDP open on the target server](https://github.com/nguyentimmy/azure-lab/blob/main/Purple%20Teaming%20Assessment/Network%20Pentest/01%20RDP%20Brute%20Force/Pictures/1.%20rdp%20bf.png)
+![Nmap scan showing RDP open on the target server](https://github.com/nguyentimmy/Offensive-Security-Engineering/blob/main/Penetrating%20Testing%20%F0%9F%92%A5/RDP%20Brute%20Force/Pictures/1.%20rdp%20bf.png)
 
 **Reconnaissance** — An Nmap scan confirms RDP is open on the Windows server. Exposed remote-access protocols like RDP and SSH are among the first things an attacker probes for, since they offer a direct path to interactive access. This particular scan is deliberately aggressive (`-T5 -vvv`) and would light up most modern defenses — IDS, IPS, SIEM, EDR, XDR — so it isn't how you'd operate quietly in the real world. It's run loud here on purpose, to clearly surface the open ports for demonstration.
 
